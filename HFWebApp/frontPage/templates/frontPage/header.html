@@ -41,52 +41,60 @@
 		</div>
 		
 		<div class="contatiner">
-			<!-- Copy past this to diplay more forums-->
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Wilder's Security Forum</h3>
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<!-- Copy past this to diplay more forums-->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							Wilder's Security Forum
+							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#wilders" aria-expanded="true" aria-controls="wilders">
+								Expand me! 
+							</a>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<p>Community Based Discussions about Online Privacy, Security and Data Protection.
+						(short description about kind of forum it is)</p>
+					</div>
+					<div id="wilders" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="wilder">
+						<table class="table">
+							<tr> <!-- table row -->
+								<th> Stats </th> <!-- table header -->
+								<th> # </th>
+							</tr>
+							<tr>
+								<td> Num Users: </td>
+								<td> 1000 </td>
+							</tr>
+							<tr>
+								<td> Num Posts: </td>
+								<td> 1000 </td>
+							</tr>
+							<tr>
+								<td> Num Threads: </td>
+								<td> 1000 </td>
+							</tr>
+							<tr>
+								<td> Num Days Active: </td>
+								<td> 1000 </td>
+							</tr>
+							<tr>
+								<td> Num IP's: </td>
+								<td> 1000 </td>
+							</tr>
+							<tr>
+								<td> Num Suspicious Users: </td>
+								<td> 1000 </td>
+							</tr>
+							<tr>
+								<td> Num Suspicious IP's: </td>
+								<td> 1000 </td>
+							</tr>
+						</table>
+					</div>
 				</div>
-				<div class="panel-body">
-					<p>Community Based Discussions about Online Privacy, Security and Data Protection.
-					(short description about kind of forum it is)</p>
-				</div>
-				<table class="table">
-					<tr> <!-- table row -->
-						<th> Stats </th> <!-- table header -->
-						<th> # </th>
-					</tr>
-					<tr>
-						<td> Num Users: </td>
-						<td> 1000 </td>
-					</tr>
-					<tr>
-						<td> Num Posts: </td>
-						<td> 1000 </td>
-					</tr>
-					<tr>
-						<td> Num Threads: </td>
-						<td> 1000 </td>
-					</tr>
-					<tr>
-						<td> Num Days Active: </td>
-						<td> 1000 </td>
-					</tr>
-					<tr>
-						<td> Num IP's: </td>
-						<td> 1000 </td>
-					</tr>
-					<tr>
-						<td> Num Suspicious Users: </td>
-						<td> 1000 </td>
-					</tr>
-					<tr>
-						<td> Num Suspicious IP's: </td>
-						<td> 1000 </td>
-					</tr>
-				</table>
+				<!-- End Copy -->
 			</div>
-			<!-- End Copy -->
-			
 		</div>
 	</div>
 	
@@ -111,6 +119,8 @@
 	</nav>
 </body>
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
