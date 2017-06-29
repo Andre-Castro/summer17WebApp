@@ -1,9 +1,9 @@
 {% extends "forumSelect/header.html" %}
 
 {% block content %}
-<!-- Copy paste this code(different path) to add more forums--
-{% include "frontPage/includes/wilders.html" %}
-{% include "frontPage/includes/offcomm.html" %}
-{% include "frontPage/includes/hackthissite.html" %}
-<!-- End Copy -->
-{% endblock %}	
+	{% for forum in forums %}
+		{% if forum.0 == "Wilders" %}
+			{{name}}
+		{% endif %}
+	{% endfor %}
+{% endblock %}

@@ -14,7 +14,9 @@
 	<div>
 	<header class="navbar-inverse lightText">
 		<h1 id="IPExtractorTool" class="page-header">
-		Wilder's Security Forum - Detailed
+		{% block content %}
+		{% endblock %}
+		- Detailed
 		</h1>
 	</header>
 		<div class="row">
@@ -39,7 +41,7 @@
 						<div class="row">
 						  <div class="col-sm-6 col-md-4">
 							<div class="thumbnail">
-							  <img src="..." alt="...">
+							  <img src="{% static 'timeseriesJustMal.png' %}" alt="...">
 							  <div class="caption">
 								<h3>Graph</h3>
 								<p>Total number of posts in over one month</p>
