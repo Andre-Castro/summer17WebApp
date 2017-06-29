@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>IP Extractor Tool</title>
+	<meta charset="utf-8" />
+	{% load staticfiles %}
+	<link rel="stylesheet" href="/static/custom.css" type="text/css"/>
+	<link rel="stylesheet" href="/static/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	</head>
+
+<body class="body" style="background-color:#565656">
+	<div>
+	<header class="navbar-inverse lightText">
+		<h1 id="IPExtractorTool" class="page-header">
+		Wilder's Security Forum - Detailed
+		</h1>
+	</header>
+		<div class="row">
+			<div class="col-sm-8 lightText">
+				Wilder's Security Forum Details, use the tabs on the right to traverse through the information:
+				<p> Please select from the list of forumns below: </p>
+			   
+			</div>
+			<form class="form-inline">
+				<div class="col-sm-4">
+					<ul class="nav nav-tabs nav-inverse">
+						<li class="active"><a data-toggle="tab" href="#stats">Basic Stats</a></li>
+						<li><a data-toggle="tab" href="#menu1">Malicious IPs</a></li>
+						<li><a data-toggle="tab" href="#menu2">Suspicious User</a></li>
+						<li><a data-toggle="tab" href="#menu2">Other</a></li>
+					</ul>
+				</div>
+				<div class="tab-content col-sm-12">
+					<div id="stats" class="tab-pane fade in active lightText">
+						<h3>Wilder's Stats in More Detail:</h3>
+						<p>Some content.</p>
+						<div class="row">
+						  <div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+							  <img src="..." alt="...">
+							  <div class="caption">
+								<h3>Graph</h3>
+								<p>Total number of posts in over one month</p>
+								<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+							  </div>
+							</div>
+						  </div>
+						</div>
+					</div>
+					
+					<div id="menu1" class="tab-pane fade lightText">
+						<h3>Suspicious IP Information</h3>
+						<p>loading....</p>
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped active" role="progressbar"
+							aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+								40%
+							</div>
+						</div>
+					</div>
+					
+					<div id="menu2" class="tab-pane fade lightText">
+						<h3>Menu 2</h3>
+						<p>Some content in menu 2.</p>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</body>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</html>
