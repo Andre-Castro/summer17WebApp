@@ -2,8 +2,66 @@
 
 {% block content %}
 <!-- Copy paste this code(different path) to add more forums-->
-{% include "frontPage/includes/wilders.html" %}
-{% include "frontPage/includes/offcomm.html" %}
-{% include "frontPage/includes/hackthissite.html" %}
+
+{% for name in names %}
+	<div class="panel panel-default">
+		<div class="panel-heading" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{name.0}}" aria-expanded="true" aria-controls="{{name.0}}">
+			<h3 class="panel-title">
+				{{name.1}} <span class="caret"> </span>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<p>
+			{{name.2}}
+			</p>
+		</div>
+		<div class = "panel-footer clearfix">
+			<p> Num Users: 
+				{% for element in name %}
+					{% if element.1 == 'Num Users' %}
+						{{element.2}}
+					{% endif %}
+				{% endfor %}
+			, Num Posts: 
+				{% for element in name %}
+					{% if element.1 == 'Num Posts' %}
+						{{element.2}}
+					{% endif %}
+				{% endfor %}
+			, Num Days Active:
+				{% for element in name %}
+					{% if element.1 == 'Num Days Active' %}
+						{{element.2}}
+					{% endif %}
+				{% endfor %}
+				<a class="btn btn-primary btn-sm pull-right" role="button" href='/forum'>
+					Check me out!
+				</a>
+			</p>
+		</div>
+		<div id="{{name.0}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{name.0}}">
+			<table class="table">
+				<tr> <!-- table row -->
+					<th> Stats </th> <!-- table header -->
+					<th> # </th>
+				</tr>
+				{% for element in name %}
+					<tr>
+					{% if element.0 == '$' %}
+						<td> {{element.1}} </td>
+						<td> {{element.2}} </td>
+					{% endif %}
+					</tr>
+				{% endfor %}
+			</table>
+			<div class="panel-footer right-align">
+				<a href='/forum' class="btn btn-primary btn-sm pull-right" role="button">
+					Check me out!
+				</a>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+{% endfor %}
 <!-- End Copy -->
 {% endblock %}	
