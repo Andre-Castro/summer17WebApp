@@ -17,3 +17,12 @@
 .nav-inverse{
 	background: #333;
 }
+
+.shorten-panel-group{
+	margin: 0 auto;
+	width: 66%;
+}
+
+Textarea {
+    resize: none;
+}
