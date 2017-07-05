@@ -5,7 +5,7 @@ import os
 def index(request):
 	dict = {}
 	dict["names"] = []
-	file = open (os.path.join(os.path.dirname(os.path.realpath(__file__))+ '/templates/frontPage/includes/forumInfo.txt'), 'r')
+	file = open (os.path.join(os.path.dirname(os.path.realpath(__file__))+ '/templates/frontPage/includes/forumInfo.dat'), 'r')
 	lines = re.split(r'\n', file.read())
 	name = ""
 	i = -1

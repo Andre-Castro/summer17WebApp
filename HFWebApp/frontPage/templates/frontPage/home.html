@@ -34,7 +34,7 @@
 						{{element.2}}
 					{% endif %}
 				{% endfor %}
-				<a class="btn btn-primary btn-sm pull-right" role="button" href='/forum' data-forumButton="btn-{{name.0}}" id ="forumSelectButton2">
+				<a class="btn btn-primary btn-sm pull-right" role="button" href='/forum' data-forumButton="btn-{{name.0}}" id ="forumSelectButton{{name.0}}1">
 					Check me out!
 				</a>
 			</p>
@@ -55,7 +55,7 @@
 				{% endfor %}
 			</table>
 			<div class="panel-footer right-align">
-				<a href='/forum' class="btn btn-primary btn-sm pull-right" role="button" data-forumButton="btn-{{name.0}}" id="forumSelectButton1">
+				<a href='/forum' class="btn btn-primary btn-sm pull-right" role="button" data-forumButton="btn-{{name.0}}" id="forumSelectButton{{name.0}}2">
 					Check me out!
 				</a>
 				<div class="clearfix"></div>
@@ -64,16 +64,14 @@
 	</div> 
 	<div>
 		<script>
-			var forumButton1 = document.getElementsById('forumSelectButton1');
-			var forumButton2 = document.getElementsById('forumSelectButton2');
+			var forumButton1 = document.getElementById('forumSelectButton{{name.0}}1');
+			var forumButton2 = document.getElementById('forumSelectButton{{name.0}}2');
 			
 			forumButton1.addEventListener("click", passName);
 			forumButton2.addEventListener("click", passName);
-			
-			console.log(var)
+			//console.log(var)
 			function passName(){
 				var buttonID = this.attributes["data-forumButton"].value;
-				//var button = document.getElementById()
 			}
 		</script>
 	</div>

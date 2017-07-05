@@ -1,10 +1,19 @@
 from django.shortcuts import render
 import psycopg2
+import os
+import re
 
 def index(request):
 	dict = {
 		"name": "NAME"
 	}
+	file = open (os.path.join(os.path.dirname(os.path.realpath(__file__))+ '/templates/forumSelect/includes/ipList.dat'), 'r')
+	#dict["ipList"] = [] #INSERT LIST OF IPs HERE
+	
+	list = re.split(r'\n', file.read())
+	for i in range(len(list)):
+		list[i] = re.split(r' ', list[i])
+	dict["ipList"] = list
 	'''
 	DBname = "MichalisPrj"
 	pword = "1"
