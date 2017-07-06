@@ -48,8 +48,11 @@
 					</ul>
 				</div>
 			</div>
+<<<<<<< HEAD
 			{% block content %}
 			{% endblock %}
+=======		
+>>>>>>> 5449a334a12d1fac048aa2db3bf5f7a9b0cdcdf4
 		</div>
 	</div>
 	
@@ -60,11 +63,9 @@
 				<span aria-hidden="true">&laquo;</span>
 			</a>
 			</li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
+            {% for p in pager %}
+			<li><a href="/forum/{{forum}}/ip/{{p}}/">{{p}}</a></li>
+			{% endfor %}
 			<li>
 			<a href="#" aria-label="Next">
 				<span aria-hidden="true">&raquo;</span>

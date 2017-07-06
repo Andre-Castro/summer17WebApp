@@ -42,17 +42,21 @@
 			<tr>
 				<th>IP</th>
 				<th><span class="badge">freq</span></th>
-				<th>Post ID</th>
 				<th>Thread ID</th>
-				<th> Initial Date </th>
+				<th>Post ID</th>
+				<th>Country</th>
+				<th>Is Malicious</th>
+				<th>Initial Date </th>
 			</tr>
-			{% for element in ipList %}
+			{% for element in ip %}
 			<tr>
 				<td>{{element.0}}</td>
 				<td><span class="badge">{{element.1}}</span></a></td>
-				<td>temp</td>
-				<td>temp2</td>
-				<td>7/1/96</td>
+				<td>{{element.2}}</td>
+				<td>{{element.3}}</td>
+				<td>{{element.4}}</td>
+				<td>{{element.5}}</td>
+				<td>Some date</td>
 			</tr>
 			{% endfor %}
 		</table>
