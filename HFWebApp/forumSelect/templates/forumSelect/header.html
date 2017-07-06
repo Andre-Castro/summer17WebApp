@@ -152,17 +152,21 @@
 							<tr>
 								<th>IP</th>
 								<th><span class="badge">freq</span></th>
-								<th>Post ID</th>
 								<th>Thread ID</th>
-								<th> Initial Date </th>
+                                <th>Post ID</th>
+                                <th>Country</th>
+                                <th>Is Malicious</th>
+                                <th>Initial Date </th>
 							</tr>
-							{% for element in ipList %}
+							{% for element in ip %}
 							<tr>
 								<td>{{element.0}}</td>
 								<td><span class="badge">{{element.1}}</span></a></td>
-								<td>temp</td>
-								<td>temp2</td>
-								<td>7/1/96</td>
+								<td>{{element.2}}</td>
+								<td>{{element.3}}</td>
+								<td>{{element.4}}</td>
+								<td>{{element.5}}</td>
+								<td>Some date</td>
 							</tr>
 							{% endfor %}
 						</table>
@@ -184,11 +188,9 @@
 				<span aria-hidden="true">&laquo;</span>
 			</a>
 			</li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
+            {% for p in pager %}
+			<li><a href="/{{forum}}/{{p}}/">{{p}}</a></li>
+			{% endfor %}
 			<li>
 			<a href="#" aria-label="Next">
 				<span aria-hidden="true">&raquo;</span>
