@@ -8,6 +8,7 @@ $Num Days Active: 1004
 $Num IP's: 1005
 $Num Suspicious Users: 1006
 $Num Suspicious Ip's: 1007
+$name: wilders
 -Offensive Community:
 &Offensive Community is a world best underground hacking forum that provides tutorials, latest hacking techniques, free tools and a great online teaching to our members. Join the forum Now. Feel free to join our community.
 $Num Users: 2000
@@ -18,6 +19,7 @@ $Num Days Active: 2004
 $Num IP's: 2005
 $Num Suspicious Users: 2006
 $Num Suspicious Ip's: 2007
+$name: offcomm
 -HackThisSite:
 &Hack This Site is a free, safe and legal training ground for hackers to test and expand their hacking skills. More than just another hacker wargames site, we are a living, breathing community with many active projects in development, with a vast selection of hacking articles and a huge forum where users can discuss hacking, network security, and just about everything. Tune in to the hacker underground and get involved with the project.
 $Num Users: 3000
@@ -28,3 +30,4 @@ $Num Days Active: 3004
 $Num IP's: 3005
 $Num Suspicious Users: 3006
 $Num Suspicious Ip's: 3007
+$name: hackthissite

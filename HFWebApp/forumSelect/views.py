@@ -86,6 +86,7 @@ SELECT count(*) FROM ip.ip WHERE forum = %s
 
 def ip_list(request, forum, page=1):
     print >> sys.stderr, (forum, page)
+    page = int(page)
     try:
         with psycopg2.connect(dbname='hackerchatter', host='localhost', user='hackerchatter', password='michalisfaloutsos') as con:
             cur = con.cursor()
