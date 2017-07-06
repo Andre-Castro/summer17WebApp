@@ -2,6 +2,8 @@ from django.shortcuts import render
 import psycopg2
 import os
 import re
+import json
+from pprint import pprint
 
 def index(request):
 	dict = {
@@ -14,6 +16,19 @@ def index(request):
 	for i in range(len(list)):
 		list[i] = re.split(r' ', list[i])
 	dict["ipList"] = list
+	
+	
+	labels = []
+	data = []
+	with open(os.path.join(os.path.dirname(os.path.realpath(__file__))+ '/templates/forumSelect/includes/reported_users.json')) as data_file:    
+		jdata = json.load(data_file)
+		for element in jdata:
+			labels.append(element[0])
+			data.append(element[1])
+			
+	dict["labels"] = labels
+	dict["data"] = data
+	#print(dict)
 	'''
 	DBname = "MichalisPrj"
 	pword = "1"
