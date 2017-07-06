@@ -2,8 +2,13 @@ from django.shortcuts import render
 import psycopg2
 import os
 import re
+<<<<<<< HEAD
+import json
+from pprint import pprint
+=======
 import sys
 import math
+>>>>>>> 5449a334a12d1fac048aa2db3bf5f7a9b0cdcdf4
 
 PAGE_SIZE = 20
 
@@ -18,6 +23,19 @@ def index(request, forum):
 	for i in range(len(list)):
 		list[i] = re.split(r' ', list[i])
 	dict["ipList"] = list
+	
+	
+	labels = []
+	data = []
+	with open(os.path.join(os.path.dirname(os.path.realpath(__file__))+ '/templates/forumSelect/includes/reported_users.json')) as data_file:    
+		jdata = json.load(data_file)
+		for element in jdata:
+			labels.append(element[0])
+			data.append(element[1])
+			
+	dict["labels"] = labels
+	dict["data"] = data
+	#print(dict)
 	'''
 	DBname = "MichalisPrj"
 	pword = "1"

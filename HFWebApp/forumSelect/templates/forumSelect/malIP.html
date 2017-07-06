@@ -1,0 +1,79 @@
+<div id="IPstats" class="tab-pane fade">
+	<div class="count lightText">
+		IP List
+	</div>
+	<div class="dropdown col-sm-1">
+		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			Sort By
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<li><a href="#">Malicious</a></li>
+			<li><a href="#">Begnign</a></li>
+			<li><a href="#">Post Date</a></li>
+			<li><a href="#">Alphabetical</a></li>
+			<li role="separator" class="divider"></li>
+			<li><a href="#">Separated link</a></li>
+		</ul>
+	</div>
+	<div class="dropdown col-sm-8">
+		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			IP's per Page
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			<li><a href="#">10</a></li>
+			<li><a href="#">20</a></li>
+			<li><a href="#">50</a></li>
+			<li><a href="#">100</a></li>
+		</ul>
+	</div>	
+	<div class="input-group col-sm-3">
+		<input type="text" class="form-control" placeholder="Search for...">
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="button">Go!</button>
+		</span>
+	</div>
+	
+	<p></p>
+	
+	<div class="panel">
+		<table class="table">
+			<tr>
+				<th>IP</th>
+				<th><span class="badge">freq</span></th>
+				<th>Thread ID</th>
+				<th>Post ID</th>
+				<th>Country</th>
+				<th>Is Malicious</th>
+				<th>Initial Date </th>
+			</tr>
+			{% for element in ip %}
+			<tr>
+				<td>{{element.0}}</td>
+				<td><span class="badge">{{element.1}}</span></a></td>
+				<td>{{element.2}}</td>
+				<td>{{element.3}}</td>
+				<td>{{element.4}}</td>
+				<td>{{element.5}}</td>
+				<td>Some date</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	
+	<div class="row">
+		<div class="x_content">
+			<div class="dashboard-widget-content">
+			<!-- map -->
+				<div id="vmap" style="width: 600px; height: 400px;"></div>								
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div id="menu2" class="tab-pane fade lightText">
+	<h3>Menu 2</h3>
+	<p>Some content in menu 2.</p>
+</div>
