@@ -2,19 +2,19 @@ from django.shortcuts import render
 import psycopg2
 import os
 import re
-<<<<<<< HEAD
+
 import json
 from pprint import pprint
-=======
+
 import sys
 import math
->>>>>>> 5449a334a12d1fac048aa2db3bf5f7a9b0cdcdf4
+
 
 PAGE_SIZE = 20
 
 def index(request, forum):
 	dict = {
-		"name": "NAME"
+		"name": forum
 	}
 	file = open (os.path.join(os.path.dirname(os.path.realpath(__file__))+ '/templates/forumSelect/includes/ipList.dat'), 'r')
 	#dict["ipList"] = [] #INSERT LIST OF IPs HERE
@@ -23,7 +23,7 @@ def index(request, forum):
 	for i in range(len(list)):
 		list[i] = re.split(r' ', list[i])
 	dict["ipList"] = list
-	
+	#print(list)
 	
 	labels = []
 	data = []
@@ -35,6 +35,7 @@ def index(request, forum):
 			
 	dict["labels"] = labels
 	dict["data"] = data
+	dict["page"] = ["basicStats"]
 	#print(dict)
 	'''
 	DBname = "MichalisPrj"
@@ -120,13 +121,17 @@ def ip_list(request, forum, page=1):
             print ipList
     except psycopg2.Error as e:
         print(e.pgerror)
-        
+		
+	#title = forum (but make first letter caps)
+	 
     dict = {
+		'name': forum, #change to title
         'forum': forum,
         'ip': ipList,
         'has_prev': has_prev,
         'pager': pager,
         'has_next': has_next,
+		'page': ["malIP"],
     }
         
     return render(request, 'forumSelect/home.html', dict)

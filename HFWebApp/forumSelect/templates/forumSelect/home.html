@@ -2,7 +2,12 @@
 
 {% block content %}
 <div class="tab-content col-sm-12">
-{% include basicStats.html %}
-{% include malIP.html %}
+	{% for name in page %}
+		{% if name == "basicStats" %}
+			{% include "forumSelect/basicStats.html" %}
+		{% elif name == "malIP" %}
+			{% include "forumSelect/malIP.html" %}
+		{% endif %}
+	{% endfor %}
 </div>
 {% endblock %}
