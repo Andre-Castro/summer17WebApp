@@ -1,54 +1,271 @@
-<div id="stats" class="tab-pane fade in active lightText">					
-	<div class="right col" role="main">
-		<div class="row tile_count">
-			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+{% load static %}
+{% load humanize %}
+<!-- Chart.js -->
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<div id="stats" class="tab-pane fade in active" style="color:#73879C">					
+	<div class="right col" role="main" style="margin-bottom:20px">
+		<div class="row tile_count lightText">
+			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" style="border-left: 2px solid orange">
 				<span class="count_top"><i class="fa fa-clock-o"></i> Forum Lifespan</span>
-				<div class="count">2500 days</div>
-				<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>0.2% </i> From last Week</span>
+				<div class="count">{{lifespan|intcomma}} days</div>
+				<!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>0.2% </i> From last Week</span> -->
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" style="border-left: 2px solid orange">
 				<span class="count_top"><i class="fa fa-user"></i> Registered Users</span>
-				<div class="count">2,500</div>
-				<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>1 </i> From last Week</span>
+				<div class="count">{{numUsers|intcomma}}</div>
+				<!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>1 </i> From last Week</span> -->
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" style="border-left: 2px solid orange">
 				<span class="count_top"><i class="fa fa-list-ol"></i> Total Posts</span>
-				<div class="count">23506</div>
-				<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>16 </i> From last Week</span> </br>
-				<span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>3% </i> From last Week</span>
+				<div class="count">{{numPosts|intcomma}}</div>
+				<!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>16 </i> From last Week</span> </br> -->
+				<!-- <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>3% </i> From last Week</span> -->
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" style="border-left: 2px solid orange">
 				<span class="count_top"><i class="fa fa-list"></i> Total Threads</span>
-				<div class="count">4,567</div>
-				<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>2% </i> From last Week</span>
+				<div class="count">{{numThreads|intcomma}}</div>
+				<!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>2% </i> From last Week</span> -->
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" style="border-left: 2px solid orange">
 				<span class="count_top"><i class="fa fa-user"></i> Total IP's</span>
-				<div class="count">2,315</div>
-				<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+				<div class="count">{{numIp|intcomma}}</div>
+				<!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
 			</div>
-			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-				<span class="count_top"><i class="fa fa-user"></i> Forum Usage</span>
-				<div class="count">7,325</div>
-				<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-			</div>
+			<!-- <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count"> -->
+				<!-- <span class="count_top"><i class="fa fa-user"></i> Forum Usage</span> -->
+				<!-- <div class="count">7,325</div> -->
+				<!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
+			<!-- </div> -->
 		</div>
 	</div>
-	<p></p>
 	<div class="row">
-		<div class="col-sm-6 col-md-6">
-			<div class="thumbnail">
-				<canvas id="myChart" width="400" height="400"></canvas>
+		<div class="col-sm-6 col-md-6 col-xs-12">
+			<div class="x_panel tile" style="height: 600px">
+                <div class="x_title">
+                    <h2>Forum Activity</h2>
+                    <a href="#graph1" data-toggle="collapse"><i class="fa fa-chevron-up pull-right"></i></a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content collapse in" id="graph1">
+                    <div class="bs-example-popovers" style="text-align:center;margin-bottom:12px">
+                      <button type="button" class="btn btn-default">
+                        2013
+                      </button>
+                      <button type="button" class="btn btn-default">
+                        2014
+                      </button>
+                      <button type="button" class="btn btn-default">
+                        2015
+                      </button>
+                      <button type="button" class="btn btn-default">
+                        2016
+                      </button>
+                    </div>
+                    <canvas id="forumActivityBarChart" width="600" height="300"></canvas>
+                    <script>
+                        var ctx = document.getElementById("forumActivityBarChart").getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dev"],
+                                datasets: [{
+                                    label: '# of Posts',
+                                    backgroundColor: 'CornflowerBlue ',
+                                    data: {{activity.2016.post}},
+                                    borderWidth: 1
+                                },{
+                                    label: '# of Threads',
+                                    backgroundColor: 'DarkCyan ',
+                                    data: {{activity.2016.thread}},
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true
+                                        }
+                                    }]
+                                },
+                                legend: {
+                                    position: 'bottom',
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+                <!--
 				<div class="caption">
 					<h3>Graph</h3>
 					<p>Total number of posts in over one month</p>
 					<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-				</div>
+				</div>-->
 			</div>
 		</div>
-		<div class="col-sm-6 col-md-6">
-			{% load static %}
-			<img src="{% static '/forumSelect/gtest.jpg' %}"/>	
+		<div class="col-sm-3 col-md-3 col-xs-12">
+			<div class="x_panel tile" style="height: 600px">
+                <div class="x_title">
+                    <h2># of Posts per User</h2>
+                    <a href="#graph2" data-toggle="collapse"><i class="fa fa-chevron-up pull-right"></i></a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content collapse in" id="graph2">
+                    <!-- <canvas id="myChart" width="100" height="100"></canvas> -->
+                    <!-- <img src="{% static 'user_dist_offcomm.png' %}" /> -->
+                    <canvas id="userDistLineChart" width="400" height="300"></canvas>
+                    <script>
+                        var ctx = document.getElementById("userDistLineChart").getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                datasets: [{
+                                    data: {{userDist|safe}},
+                                    fill: false, 
+                                    pointRadius: 0,
+                                    borderJoinStyle: 'round',
+                                    borderWidth: 2,
+                                    borderColor: '#4E8A96',
+                                    cubicInterpolationMode: 'monotone',
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        display: true,
+                                        type: 'logarithmic',
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: '# of Posts',
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Percentage (%)',
+                                        }
+                                    }]
+                                },
+                                legend: {
+                                    display: false,
+                                }
+                            },
+                        });
+                    </script>
+                    <h3>Top 5 Users</h3>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-xs-12">
+                            <span><b>User ID</b></span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-12" style="text-align:right">
+                            <span><b># of Posts</b></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    {% for element in userTop5 %}
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-xs-12">
+                            <span>{{element.0}}</span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-12" style="text-align:right">
+                            <span>{{element.1}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    {% endfor%}
+                </div>
+                <!--
+				<div class="caption">
+					<h3>Graph</h3>
+					<p>Total number of posts in over one month</p>
+					<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+				</div>-->
+			</div>
+		</div>
+        <div class="col-sm-3 col-md-3 col-xs-12">        
+            <!-- style="height: 600px" is the reason why the collapsing doesnt work, but using the class "fixed_height_#"
+                with a simple setting of height (see custom.css) does not fix the problem even tho that is exactly what
+                they are doing in the sample website... -->        
+			<div class="x_panel tile fixed_height_600" ><!--style="height: 600px"-->
+                <div class="x_title">
+                    <h2># of Posts per Threads</h2>
+                    <a href="#graph3" data-toggle="collapse"><i class="fa fa-chevron-up pull-right"></i></a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content collapse in" id="graph3">
+                    <!-- <canvas id="myChart" width="100" height="100"></canvas> -->
+                    <!-- <img src="{% static 'thread_dist_offcomm.png' %}" /> -->
+                    <canvas id="threadDistLineChart" width="400" height="300"></canvas>
+                    <script>
+                        var ctx = document.getElementById("threadDistLineChart").getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                datasets: [{
+                                    data: {{threadDist|safe}},
+                                    fill: false, 
+                                    pointRadius: 0,
+                                    borderJoinStyle: 'round',
+                                    borderWidth: 2,
+                                    borderColor: '#4E8A96',
+                                    cubicInterpolationMode: 'monotone',
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        display: true,
+                                        type: 'logarithmic',
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: '# of Posts',
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        display: true,
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Percentage (%)',
+                                        }
+                                    }]
+                                },
+                                legend: {
+                                    display: false,
+                                }
+                            },
+                        });
+                    </script>
+                    
+                    <h3>Top 5 Threads</h3>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-xs-12">
+                            <span><b>Thread ID</b></span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-12" style="text-align:right">
+                            <span><b># of Posts</b></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    {% for element in threadTop5 %}
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-xs-12">
+                            <span>{{element.0}}</span>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-xs-12" style="text-align:right">
+                            <span>{{element.1}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    {% endfor%}
+                </div>
+                <!--
+				<div class="caption">
+					<h3>Graph</h3>
+					<p>Total number of posts in over one month</p>
+					<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+				</div>-->
+			</div>
 		</div>
 	</div>
 </div>

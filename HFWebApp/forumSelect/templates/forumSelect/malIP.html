@@ -1,9 +1,9 @@
-<div id="IPstats" class="tab-pane fade in active">
-	<div class="count lightText">
-		IP List
-	</div>
-	<div class="dropdown col-sm-9">
-		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+{% load static %}
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<div id="IPstats" class=" fade in active">
+	<!--
+    <div class="dropdown col-sm-9">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			Sort By
 			<span class="caret"></span>
 		</button>
@@ -12,76 +12,156 @@
 			<li><a href="#">Begnign</a></li>
 			<li><a href="#">Post Date</a></li>
 			<li><a href="#">Alphabetical</a></li>
+			<li><a href="#">PID</a></li>
+            <!-- seperated part incase wanted
 			<li role="separator" class="divider"></li>
-			<li><a href="#">Separated link</a></li>
+			<li><a href="#">Separated link</a></li> --
 		</ul>
-	</div>
+    </div>
+    
 	<div class="input-group col-sm-3">
 		<input type="text" class="form-control" placeholder="Search for...">
 		<span class="input-group-btn">
 			<button class="btn btn-default" type="button">Go!</button>
 		</span>
-	</div>
-	
-	<p></p>
-	
-	<div class="panel">
-		<table class="table">
-			<tr>
-				<th>IP</th>
-				<th><span class="badge">freq</span></th>
-				<th>Thread ID</th>
-				<th>Post ID</th>
-				<th>Country</th>
-				<th>Is Malicious</th>
-				<th>Initial Date </th>
-			</tr>
-			{% for element in ip %}
-			<tr>
-				<td>{{element.0}}</td>
-				<td><span class="badge">{{element.1}}</span></a></td>
-				<td>{{element.2}}</td>
-				<td>{{element.3}}</td>
-				<td>{{element.4}}</td>
-				<td>{{element.5}}</td>
-				<td>Some date</td>
-			</tr>
-			{% endfor %}
-		</table>
-	</div>
-	
-	<div class="row">
-		<div class="x_content">
-			<div class="dashboard-widget-content">
-			<!-- map -->
-				<div id="vmap" style="width: 600px; height: 400px;"></div>								
-			</div>
-		</div>
-	</div>
-	
+	</div> -->
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="x_panel tile">
+                        <div class="x_title">
+                            <h2>IP Map</h2>
+                            <a href="#ipMap" data-toggle="collapse"><i class="fa fa-chevron-up pull-right"></i></a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content collapse in" id="ipMap">
+                            <div class="dashboard-widget-content" style="text-align: center">
+                            <!-- map -->
+                                <div id="vmap" style="width: 400px; height: 300px; margin:auto;"></div>								
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="x_panel tile">
+                        <div class="x_title">
+                            <h2>IPs from Countries</h2>
+                            <a href="#PieChart" data-toggle="collapse"><i class="fa fa-chevron-up pull-right"></i></a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content collapse in" id="PieChart">
+                            <canvas id="ipCountryDoughnutChart" width="320" height="240"></canvas>
+                            <script>
+                                var ctx = document.getElementById("ipCountryDoughnutChart").getContext('2d');
+                                ctx.canvas.width = 300;
+                                ctx.canvas.height = 300;
+                                var myChart = new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: {{donughLabels|safe}},
+                                        datasets: [{
+                                            label: '# of IPs',
+                                            data: {{donughData}},
+                                            borderWidth: 1,
+                                            backgroundColor: ["#455C73","#9B59B6","#BDC3C7","#26B99A","#3498DB","#DFDFDF"],
+                                        }]
+                                    },
+                                    options: {
+                                        legend: {
+                                            position: "right",
+                                            labels: {
+                                                fontSize: 14,
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-8">
+            <div class="x_panel tile collapse in">
+                <div class="x_title">
+                    <h2>IP List</h2>
+                    <div class="dropdown col-sm-7">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Filter
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="Filter">
+                            <li><a href="#">Malicious</a></li>
+                            <li><a href="#">Begnign</a></li>
+                            <!-- Using both checkbox and non-checkbox to see which one is better -->
+                            <li><input type="checkbox" class="flat"> Malicious by Us</li>
+                            <li><input type="checkbox" class="flat"> Malicious External</li>
+                        </ul>
+                    </div>
+                    <div class="input-group col-sm-3">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                        <a class="collapse-link" href="#ipList" data-toggle="collapse"><i class="fa fa-chevron-up pull-right"></i></a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content collapse in" id="ipList">
+                    <table class="table">
+                        <tr> <!-- Make the header ones clickable to sort by -->
+                            <th><a href="#" style="color: black">IP</a></th>
+                            <th><a href="#"><span class="badge">freq</span></a></th>
+                            <th><a href="#" style="color: black">Thread ID</a></th>
+                            <th><a href="#" style="color: black">Post ID</a></th>
+                            <th><a href="#" style="color: black">Country</a></th>
+                            <th><a href="#" style="color: black">Is Safe</a></th>
+                            <th><a href="#" style="color: black">Initial Date</a></th>
+                        </tr>
+                        {% for element in ip %}
+                        <tr>
+                            <td>{{element.0}}</td>
+                            <td><span class="badge">{{element.1}}</span></a></td>
+                            <td>{{element.2}}</td>
+                            <td>{{element.3}}</td>
+                            <td>{{element.4}}</td>
+                            <td><img src="/static/{{element.5|yesno:'no.png,yes.png'}}" /></td>
+                            <td>{{element.6}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                            </li>
+                            {% for p in pager %}
+                            <li><a href="/forum/{{forum}}/ip/{{p}}/">{{p}}</a></li>
+                            {% endfor %}
+                            <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div id="menu2" class="tab-pane fade lightText">
-	<h3>Menu 2</h3>
-	<p>Some content in menu 2.</p>
-</div>
-
-	<img src="/static/pie_{{forum}}.png"></script>
-
-	<nav aria-label="Page navigation">
-		<ul class="pagination">
-			<li>
-			<a href="#" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-			</a>
-			</li>
-            {% for p in pager %}
-			<li><a href="/forum/{{forum}}/ip/{{p}}/">{{p}}</a></li>
-			{% endfor %}
-			<li>
-			<a href="#" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-			</a>
-			</li>
-		</ul>
-	</nav>
+<script>
+$(document).ready(function(){
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_flat',
+    radioClass: 'iradio_flat'
+  });
+});
+</script>

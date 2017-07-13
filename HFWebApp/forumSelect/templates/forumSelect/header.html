@@ -25,25 +25,26 @@
     <link href="https://colorlib.com/polygon/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
 	</head>
 
-<body class="body" style="background-color:#565656">
+<body class="body" style='background-color:#565656; font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;'>
 	<div>
 		<header class="navbar-inverse lightText">
 			<h1 id="IPExtractorTool" class="page-header">
-			{{name}} - Detailed
+			{{forumName}} - Detailed
+            <a type="button" class="btn btn-default navbar-btn pull-right" href='/'>Back</a>
 			</h1>
 		</header>
 		<div class="row">
 			<div class="col-sm-8 lightText">
-				{{name}} Security Forum Details, use the tabs on the right to traverse through the information:
+				<h4>{{forumName}} details, use the tabs on the right to traverse through the information:</h4>
 			   
 			</div>
 			<div class="row"> <!-- ensures navbar is not affected by page elements -->
 				<div class="col-sm-4">
 					<nav class="navbar navbar-inverse">
-						<a type="button" class="btn btn-default navbar-btn" href='/forum/ashiyane/'>Basic Stats</a>
-						<a type="button" class="btn btn-default navbar-btn" href='/forum/ashiyane/ip/'>Malicious IPs</a>
-						<a type="button" class="btn btn-default navbar-btn" href=''>Suspicious User</a>
-						<a type="button" class="btn btn-default navbar-btn" href=''>Other</a>
+						<a type="button" class="btn btn-default  navbar-btn" href='/forum/{{forum}}/'>Basic Stats</a>
+						<a type="button" class="btn btn-default navbar-btn" href='/forum/{{forum}}/ip/'>Malicious IPs</a>
+						<a type="button" class="btn btn-default navbar-btn" href='#'>Suspicious User</a> <!--/forum/{{forum}}/user/-->
+						<a type="button" class="btn btn-default navbar-btn" href='#'>Other</a>
 					</nav>
 				</div>
 			</div>
@@ -54,8 +55,6 @@
 	    
 	<!-- BEGIN SCRIPTS -->	
 		
-	<!-- Chart.js -->
-	<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
@@ -73,7 +72,7 @@
 		data: {
 			labels: {{labels}},
 			datasets: [{
-				label: '# ',
+				label: '#',
 				data: {{data}},
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
